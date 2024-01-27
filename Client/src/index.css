@@ -1,0 +1,19 @@
+:root{
+  --primary-color:  rgb(44, 23, 238);
+  --success-color: rgb(30, 203, 10);
+  --danger-color: rgb(255, 0, 0);
+  --warning-color: rgb(238, 153, 16);
+  --info-color: rgb(0, 174, 255);
+  
+  --background-color: var(--primary-color);
+  --button-primary: var(--success-color);
+  --button-secondary: var(--success-color);
+}
+
+*{
+  
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+

@@ -1,0 +1,11 @@
+.layoutContainer{
+    display: flex;
+    width: 100%;
+}
+
+
+.contentArea{
+ 
+
+    flex: 9;
+}
