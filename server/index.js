@@ -49,6 +49,9 @@ mongoose
         console.error(error);
       }
     });
+    app.get('/test', (req, res) => {
+      return res.send('hello')
+    })
 
     app.use("/api/auth", authRoute);
     app.use("/api/users", userRoute);
