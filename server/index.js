@@ -49,7 +49,7 @@ mongoose
         console.error(error);
       }
     });
-    app.get('/test', (req, res) => {
+    app.get('/', (req, res) => {
       return res.send('hello')
     })
 
