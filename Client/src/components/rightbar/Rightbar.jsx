@@ -1,18 +1,16 @@
 import { Cake } from "@mui/icons-material";
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 import axios from "axios";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { Users } from "../../dummyData";
 import { API_SERVER, PUBLIC_FOLDER } from "../../utils/constant";
-import Online from "../Online/Online";
+import Online from "../online/Online";
 import "./rightbar.css";
 // eslint-disable-next-line react/prop-types
 const Rightbar = ({ user }) => {
-
-
   const [friends, setFriends] = useState([]);
   const { user: currentUser, dispatch } = useContext(AuthContext);
   const [followed, setFollowed] = useState(
@@ -33,27 +31,28 @@ const Rightbar = ({ user }) => {
       }
       setFollowed(!followed);
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
   };
-  // useEffect(() => {
-  //   const getFriends = async () => {
-  //     try {
-  //       const friendList = await axios.get(`${API_SERVER}/api/users/friends/${user._id}`);
-  //       setFriends(friendList.data);
-  //       console.log(friends.data)
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   getFriends();
-  // }, [user]);
-
+  useEffect(() => {
+    const getFriends = async () => {
+      try {
+        const friendList = await axios.get(
+          `${API_SERVER}/api/users/friends/${user._id}`
+        );
+        setFriends(friendList.data);
+        console.log(friends.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getFriends();
+  }, [user]);
 
   const profileRightbar = () => {
     return (
       <>
-      {user.username !== currentUser.username && (
+        {user.username !== currentUser.username && (
           <button className="rightbarFollowButton" onClick={handleClick}>
             {followed ? "Unfollow" : "Follow"}
             {followed ? <RemoveIcon /> : <AddIcon />}
@@ -76,7 +75,7 @@ const Rightbar = ({ user }) => {
         </div>
         <h4 className="rightbarTitle">User friends</h4>
         <div className="rightbarFollowings">
-        {friends.map((friend) => (
+          {friends.map((friend) => (
             <Link
               key={friend._id}
               to={`/profile/${friend.username}`}
@@ -96,8 +95,6 @@ const Rightbar = ({ user }) => {
               </div>
             </Link>
           ))}
- 
-        
         </div>
       </>
     );
