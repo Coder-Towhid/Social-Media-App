@@ -2,7 +2,7 @@ import { Cake } from "@mui/icons-material";
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { Users } from "../../dummyData";
@@ -36,18 +36,18 @@ const Rightbar = ({ user }) => {
       console.log(err)
     }
   };
-  useEffect(() => {
-    const getFriends = async () => {
-      try {
-        const friendList = await axios.get(`${API_SERVER}/api/users/friends/${user._id}`);
-        setFriends(friendList.data);
-        console.log(friends.data)
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getFriends();
-  }, [user]);
+  // useEffect(() => {
+  //   const getFriends = async () => {
+  //     try {
+  //       const friendList = await axios.get(`${API_SERVER}/api/users/friends/${user._id}`);
+  //       setFriends(friendList.data);
+  //       console.log(friends.data)
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+  //   getFriends();
+  // }, [user]);
 
 
   const profileRightbar = () => {

@@ -12,7 +12,8 @@ const Feed = ({ username }) => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = username
+      try {
+        const res = username
         ? await axios.get(
             `${API_SERVER}/api/posts/profile/${username}`
           )
@@ -20,9 +21,14 @@ const Feed = ({ username }) => {
             `${API_SERVER}/api/posts/timeline/${user._id}`
           );
 
+          console.log('res :>> ', res);
+
       setPost(res.data.sort((p1, p2)=>{
         return new Date(p2.createdAt) - new Date (p1.createdAt);
       }));
+      } catch (error) {
+        console.log('error :>> ', error);
+      }
     };
     fetchPosts();
   }, [username, user._id]);
